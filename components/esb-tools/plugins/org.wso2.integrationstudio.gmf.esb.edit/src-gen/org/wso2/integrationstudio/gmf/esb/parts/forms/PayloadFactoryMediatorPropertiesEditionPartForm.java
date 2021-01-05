@@ -140,6 +140,10 @@ public class PayloadFactoryMediatorPropertiesEditionPartForm extends SectionProp
 
 
 
+  protected EMFComboViewer templateEngine;
+
+
+
   /**
 	 * For {@link ISection} use only.
 	 */
@@ -598,6 +602,35 @@ public class PayloadFactoryMediatorPropertiesEditionPartForm extends SectionProp
     return parent;
   }
 
+  protected Composite createTemplateEngineEMFComboViewer(FormToolkit widgetFactory, Composite parent) {
+    createDescription(parent, EsbViewsRepository.PayloadFactoryMediator.Properties.templateEngine, EsbMessages.PayloadFactoryMediatorPropertiesEditionPart_TemplateEngineLabel);
+    templateEngine = new EMFComboViewer(parent);
+    templateEngine.setContentProvider(new ArrayContentProvider());
+    templateEngine.setLabelProvider(new AdapterFactoryLabelProvider(EEFRuntimePlugin.getDefault().getAdapterFactory()));
+    GridData templateEngineData = new GridData(GridData.FILL_HORIZONTAL);
+    templateEngine.getCombo().setLayoutData(templateEngineData);
+    templateEngine.addSelectionChangedListener(new ISelectionChangedListener() {
+
+      /**
+       * {@inheritDoc}
+       * 
+       * @see org.eclipse.jface.viewers.ISelectionChangedListener#selectionChanged(org.eclipse.jface.viewers.SelectionChangedEvent)
+       * 	
+       */
+      public void selectionChanged(SelectionChangedEvent event) {
+        if (propertiesEditionComponent != null)
+          propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(PayloadFactoryMediatorPropertiesEditionPartForm.this, EsbViewsRepository.PayloadFactoryMediator.Properties.templateEngine, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, getTemplateEngine()));
+      }
+
+    });
+    templateEngine.setID(EsbViewsRepository.PayloadFactoryMediator.Properties.templateEngine);
+    FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(EsbViewsRepository.PayloadFactoryMediator.Properties.templateEngine, EsbViewsRepository.FORM_KIND), null); //$NON-NLS-1$
+    // Start of user code for createTemplateEngineEMFComboViewer
+
+    // End of user code
+    return parent;
+  }
+
   /**
 	 * {@inheritDoc}
 	 * 
@@ -918,6 +951,53 @@ public class PayloadFactoryMediatorPropertiesEditionPartForm extends SectionProp
       reverse.setToolTipText(EsbMessages.PayloadFactoryMediator_ReadOnly);
     } else if (!eefElementEditorReadOnlyState && !reverse.isEnabled()) {
       reverse.setEnabled(true);
+    }	
+    
+  }
+
+  /**
+   * {@inheritDoc}
+   * 
+   * @see org.wso2.integrationstudio.gmf.esb.parts.PayloadFactoryMediatorPropertiesEditionPart#getTemplateEngine()
+   * 
+   */
+  public Enumerator getTemplateEngine() {
+    Enumerator selection = (Enumerator) ((StructuredSelection) templateEngine.getSelection()).getFirstElement();
+    return selection;
+  }
+
+  /**
+   * {@inheritDoc}
+   * 
+   * @see org.wso2.integrationstudio.gmf.esb.parts.PayloadFactoryMediatorPropertiesEditionPart#initTemplateEngine(Object input, Enumerator current)
+   */
+  public void initTemplateEngine(Object input, Enumerator current) {
+    templateEngine.setInput(input);
+    templateEngine.modelUpdating(new StructuredSelection(current));
+    boolean eefElementEditorReadOnlyState = isReadOnly(EsbViewsRepository.PayloadFactoryMediator.Properties.templateEngine);
+    if (eefElementEditorReadOnlyState && templateEngine.isEnabled()) {
+      templateEngine.setEnabled(false);
+      templateEngine.setToolTipText(EsbMessages.PayloadFactoryMediator_ReadOnly);
+    } else if (!eefElementEditorReadOnlyState && !templateEngine.isEnabled()) {
+      templateEngine.setEnabled(true);
+    }	
+    
+  }
+
+  /**
+   * {@inheritDoc}
+   * 
+   * @see org.wso2.integrationstudio.gmf.esb.parts.PayloadFactoryMediatorPropertiesEditionPart#setTemplateEngine(Enumerator newValue)
+   * 
+   */
+  public void setTemplateEngine(Enumerator newValue) {
+    templateEngine.modelUpdating(new StructuredSelection(newValue));
+    boolean eefElementEditorReadOnlyState = isReadOnly(EsbViewsRepository.PayloadFactoryMediator.Properties.templateEngine);
+    if (eefElementEditorReadOnlyState && templateEngine.isEnabled()) {
+      templateEngine.setEnabled(false);
+      templateEngine.setToolTipText(EsbMessages.PayloadFactoryMediator_ReadOnly);
+    } else if (!eefElementEditorReadOnlyState && !templateEngine.isEnabled()) {
+      templateEngine.setEnabled(true);
     }	
     
   }
