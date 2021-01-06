@@ -160,7 +160,7 @@ public class PayloadFactoryMediatorImpl extends MediatorImpl implements PayloadF
      * @generated
      * @ordered
      */
-    protected static final TemplateEngine TEMPLATE_ENGINE_EDEFAULT = TemplateEngine.REGEX;
+    protected static final TemplateEngine TEMPLATE_ENGINE_EDEFAULT = TemplateEngine.DEFAULT;
 
     /**
      * The cached value of the '{@link #getTemplateEngine() <em>Template Engine</em>}' attribute.

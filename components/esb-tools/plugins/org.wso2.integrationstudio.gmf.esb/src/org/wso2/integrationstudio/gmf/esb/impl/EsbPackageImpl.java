@@ -25045,7 +25045,7 @@ public class EsbPackageImpl extends EPackageImpl implements EsbPackage {
         addEEnumLiteral(keyTypeEEnum, KeyType.DYNAMIC);
 
         initEEnum(templateEngineEEnum, TemplateEngine.class, "TemplateEngine");
-        addEEnumLiteral(templateEngineEEnum, TemplateEngine.REGEX);
+        addEEnumLiteral(templateEngineEEnum, TemplateEngine.DEFAULT);
         addEEnumLiteral(templateEngineEEnum, TemplateEngine.FREEMARKER);
 
         initEEnum(mediaTypeEEnum, MediaType.class, "MediaType");

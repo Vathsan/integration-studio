@@ -32,14 +32,14 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum TemplateEngine implements Enumerator {
     /**
-     * The '<em><b>REGEX</b></em>' literal object.
+     * The '<em><b>DEFAULT</b></em>' literal object.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #REGEX_VALUE
+     * @see #DEFAULT_VALUE
      * @generated
      * @ordered
      */
-    REGEX(0, "REGEX", "Regex"),
+    DEFAULT(0, "DEFAULT", "Default"),
 
     /**
      * The '<em><b>FREEMARKER</b></em>' literal object.
@@ -52,15 +52,15 @@ public enum TemplateEngine implements Enumerator {
     FREEMARKER(1, "FREEMARKER", "Freemarker");
 
     /**
-     * The '<em><b>REGEX</b></em>' literal value.
+     * The '<em><b>DEFAULT</b></em>' literal value.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #REGEX
-     * @model literal="Regex"
+     * @see #DEFAULT
+     * @model literal="Default"
      * @generated
      * @ordered
      */
-    public static final int REGEX_VALUE = 0;
+    public static final int DEFAULT_VALUE = 0;
 
     /**
      * The '<em><b>FREEMARKER</b></em>' literal value.
@@ -81,7 +81,7 @@ public enum TemplateEngine implements Enumerator {
      */
     private static final TemplateEngine[] VALUES_ARRAY =
         new TemplateEngine[] {
-            REGEX,
+            DEFAULT,
             FREEMARKER,
         };
 
@@ -139,7 +139,7 @@ public enum TemplateEngine implements Enumerator {
      */
     public static TemplateEngine get(int value) {
         switch (value) {
-            case REGEX_VALUE: return REGEX;
+            case DEFAULT_VALUE: return DEFAULT;
             case FREEMARKER_VALUE: return FREEMARKER;
         }
         return null;

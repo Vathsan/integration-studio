@@ -2266,10 +2266,10 @@
         defaultValueLiteral="xml"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="payloadFormat" eType="#//PayloadFormatType"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="templateEngine" eType="#//TemplateEngine"
-        defaultValueLiteral="Regex"/>
+        defaultValueLiteral="Default"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="TemplateEngine">
-    <eLiterals name="REGEX" literal="Regex"/>
+    <eLiterals name="DEFAULT" literal="Default"/>
     <eLiterals name="FREEMARKER" value="1" literal="Freemarker"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="MediaType">

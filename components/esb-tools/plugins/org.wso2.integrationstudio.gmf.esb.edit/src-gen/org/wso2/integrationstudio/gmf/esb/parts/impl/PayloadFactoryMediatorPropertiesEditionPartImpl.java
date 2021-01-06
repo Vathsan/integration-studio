@@ -150,6 +150,7 @@ public class PayloadFactoryMediatorPropertiesEditionPartImpl extends CompositePr
 		propertiesStep.addStep(EsbViewsRepository.PayloadFactoryMediator.Properties.payload);
 		propertiesStep.addStep(EsbViewsRepository.PayloadFactoryMediator.Properties.args);
 		propertiesStep.addStep(EsbViewsRepository.PayloadFactoryMediator.Properties.mediaType);
+		propertiesStep.addStep(EsbViewsRepository.PayloadFactoryMediator.Properties.templateEngine);
 		propertiesStep.addStep(EsbViewsRepository.PayloadFactoryMediator.Properties.description);
 		propertiesStep.addStep(EsbViewsRepository.PayloadFactoryMediator.Properties.commentsList);
 		propertiesStep.addStep(EsbViewsRepository.PayloadFactoryMediator.Properties.reverse);
@@ -176,6 +177,9 @@ public class PayloadFactoryMediatorPropertiesEditionPartImpl extends CompositePr
 				}
 				if (key == EsbViewsRepository.PayloadFactoryMediator.Properties.mediaType) {
 					return createMediaTypeEMFComboViewer(parent);
+				}
+				if (key == EsbViewsRepository.PayloadFactoryMediator.Properties.templateEngine) {
+					return createTemplateEngineEMFComboViewer(parent);
 				}
 				if (key == EsbViewsRepository.PayloadFactoryMediator.Properties.description) {
 					return createDescriptionText(parent);
@@ -509,32 +513,39 @@ public class PayloadFactoryMediatorPropertiesEditionPartImpl extends CompositePr
 
 
 	protected Composite createTemplateEngineEMFComboViewer(Composite parent) {
-    createDescription(parent, EsbViewsRepository.PayloadFactoryMediator.Properties.templateEngine, EsbMessages.PayloadFactoryMediatorPropertiesEditionPart_TemplateEngineLabel);
-    templateEngine = new EMFComboViewer(parent);
-    templateEngine.setContentProvider(new ArrayContentProvider());
-    templateEngine.setLabelProvider(new AdapterFactoryLabelProvider(EEFRuntimePlugin.getDefault().getAdapterFactory()));
-    GridData templateEngineData = new GridData(GridData.FILL_HORIZONTAL);
-    templateEngine.getCombo().setLayoutData(templateEngineData);
-    templateEngine.addSelectionChangedListener(new ISelectionChangedListener() {
+	    createDescription(parent, EsbViewsRepository.PayloadFactoryMediator.Properties.templateEngine, EsbMessages.PayloadFactoryMediatorPropertiesEditionPart_TemplateEngineLabel);
+	    templateEngine = new EMFComboViewer(parent);
+	    templateEngine.setContentProvider(new ArrayContentProvider());
+	    templateEngine.setLabelProvider(new AdapterFactoryLabelProvider(EEFRuntimePlugin.getDefault().getAdapterFactory()));
+	    GridData templateEngineData = new GridData(GridData.FILL_HORIZONTAL);
+	    templateEngine.getCombo().setLayoutData(templateEngineData);
+	    templateEngine.getCombo().addListener(SWT.MouseVerticalWheel, new Listener() {
 
-      /**
-       * {@inheritDoc}
-       * 
-       * @see org.eclipse.jface.viewers.ISelectionChangedListener#selectionChanged(org.eclipse.jface.viewers.SelectionChangedEvent)
-       * 	
-       */
-      public void selectionChanged(SelectionChangedEvent event) {
-        if (propertiesEditionComponent != null)
-          propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(PayloadFactoryMediatorPropertiesEditionPartImpl.this, EsbViewsRepository.PayloadFactoryMediator.Properties.templateEngine, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, getTemplateEngine()));
-      }
+        @Override
+        public void handleEvent(Event arg0) {
+            arg0.doit = false;
+        }
+	    });
+	    templateEngine.addSelectionChangedListener(new ISelectionChangedListener() {
 
-    });
-    templateEngine.setID(EsbViewsRepository.PayloadFactoryMediator.Properties.templateEngine);
-    SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(EsbViewsRepository.PayloadFactoryMediator.Properties.templateEngine, EsbViewsRepository.SWT_KIND), null); //$NON-NLS-1$
-    // Start of user code for createTemplateEngineEMFComboViewer
-
-    // End of user code
-    return parent;
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.eclipse.jface.viewers.ISelectionChangedListener#selectionChanged(org.eclipse.jface.viewers.SelectionChangedEvent)
+		 * 	
+		 */
+		public void selectionChanged(SelectionChangedEvent event) {
+			if (propertiesEditionComponent != null)
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(PayloadFactoryMediatorPropertiesEditionPartImpl.this, EsbViewsRepository.PayloadFactoryMediator.Properties.templateEngine, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, getTemplateEngine()));
+		}
+		
+		});
+	    templateEngine.setID(EsbViewsRepository.PayloadFactoryMediator.Properties.templateEngine);
+		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(EsbViewsRepository.PayloadFactoryMediator.Properties.templateEngine, EsbViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		// Start of user code for createMediaTypeEMFComboViewer
+		
+		// End of user code
+		return parent;
   }
 
   /**
